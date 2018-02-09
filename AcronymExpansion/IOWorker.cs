@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AcronymExpansion
 {
-    static class AcronymStringReader
+    static class IOWorker
     {
         static public string Read()
         {

@@ -42,10 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AcronymsWorker.cs" />
+    <Compile Include="DictionaryOfAcronyms.cs" />
+    <Compile Include="WordReplacer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AcronymStringReader.cs" />
+    <Compile Include="IOWorker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
