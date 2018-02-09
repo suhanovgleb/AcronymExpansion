@@ -16,21 +16,35 @@ namespace AcronymExpansion
 
             foreach (KeyValuePair<string, string> keyValue in acronyms)
             {
-
+                for (int i = 0; i < listOfParts.Count; i++)
+                {
+                    if(keyValue.Key == listOfParts[i])
+                    {
+                        listOfParts[i] = keyValue.Value;
+                    }
+                }
             }
+
+            
+            sentence = String.Join(" ", listOfParts);
+            
+
+            Console.WriteLine(sentence);
 
             return sentence;
         }
 
         public static List<string> SplitSentence(string sentence)
         {
+            List<string> listOfParts = new List<string>(); 
             string[] unfilteredParts = sentence.Split(new char[] { ' ' });
-            foreach (string s in unfilteredParts)
+
+            foreach (string unfilteredPart in unfilteredParts)
             {
-                Console.WriteLine(s);
+                listOfParts.Add(unfilteredPart);
             }
-            Console.ReadKey();
-            return null;
+
+            return listOfParts;
         }
     }
 }
