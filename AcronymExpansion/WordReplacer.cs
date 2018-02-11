@@ -12,39 +12,51 @@ namespace AcronymExpansion
         {
             Dictionary<string, string> acronyms = DictionaryOfAcronyms.Dictionary();
 
-            List<string> listOfParts = SplitSentence(sentence);
-
-            foreach (KeyValuePair<string, string> keyValue in acronyms)
+            foreach (KeyValuePair<string, string> acronym in acronyms)
             {
-                for (int i = 0; i < listOfParts.Count; i++)
+                var indexes = new List<int>();
+
+                int index = sentence.IndexOf(acronym.Key, 0);
+
+                while (index > -1)
                 {
-                    if(keyValue.Key == listOfParts[i])
+                    if (index == 0)
                     {
-                        listOfParts[i] = keyValue.Value;
+                        try
+                        {
+                            if (!char.IsLetterOrDigit(sentence, acronym.Key.Length))
+                            {
+                                indexes.Add(index);
+                            }
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            indexes.Add(index);
+                            break;
+                        }
                     }
+                    else if ((index + acronym.Key.Length == sentence.Length) && !char.IsLetterOrDigit(sentence, index - 1) )
+                    {
+                        indexes.Add(index);
+                    }
+                    else if (!char.IsLetterOrDigit(sentence, index - 1) && !char.IsLetterOrDigit(sentence, index + acronym.Key.Length))
+                    {
+                        indexes.Add(index);
+                    }
+                    
+                    index = sentence.IndexOf(acronym.Key, index + acronym.Key.Length);
                 }
+
+                foreach (int i in indexes)
+                {
+                    Console.WriteLine(i);
+                }
+
+
             }
-
-            
-            sentence = String.Join(" ", listOfParts);
-            
-
-            Console.WriteLine(sentence);
 
             return sentence;
         }
 
-        public static List<string> SplitSentence(string sentence)
-        {
-            List<string> listOfParts = new List<string>(); 
-            string[] unfilteredParts = sentence.Split(new char[] { ' ' });
-
-            foreach (string unfilteredPart in unfilteredParts)
-            {
-                listOfParts.Add(unfilteredPart);
-            }
-
-            return listOfParts;
-        }
     }
 }
