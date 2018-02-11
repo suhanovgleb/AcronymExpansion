@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AcronymExpansion
 {
-    static class StringWorker
+    public static class StringWorker
     {
         public static string ReplaceAcronyms(string sentence) //searching and replacing acronyms
         {
@@ -51,7 +49,7 @@ namespace AcronymExpansion
             return sentence;
         }
 
-        private static string ReplaceAcronym (string sentence, int startFromIndex, KeyValuePair<string, string> acronym) //replaces one acronym with the full version
+        public static string ReplaceAcronym (string sentence, int startFromIndex, KeyValuePair<string, string> acronym) //replaces one acronym with the full version
         {
             sentence = sentence.Remove(startFromIndex, acronym.Key.Length);
             sentence = sentence.Insert(startFromIndex, acronym.Value);

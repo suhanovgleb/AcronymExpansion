@@ -2,7 +2,7 @@
 
 namespace AcronymExpansion
 {
-    static class IOWorker
+    public static class IOWorker
     {
         static public string ReadSentence() //Reads sentence from console
         {

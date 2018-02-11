@@ -3,7 +3,7 @@
 
 namespace AcronymExpansion
 {
-    static class DictionaryOfAcronyms
+    public static class DictionaryOfAcronyms
     {
         public static Dictionary<string, string> Dictionary()
         {
