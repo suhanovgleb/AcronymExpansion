@@ -16,7 +16,7 @@ means.
 
 This program converting an abbreviated sentence into its full version.
 
-## Wordlist
+## Supported acronyms
 
     lol - laugh out loud
     dw - don't worry
@@ -27,3 +27,10 @@ This program converting an abbreviated sentence into its full version.
     wp - well played
     gl - good luck
     imo - in my opinion
+
+# How to launch
+
+
+To run program and tests you must have Visual Studio.
+To run program: press F5 while you in project.
+To run tests: Test -> Run -> Run All
