@@ -5,7 +5,7 @@ Given the nature of the game, it may be inconvenient to say full sentences and i
 
 Example
 
-    gg : expands to 'Good Game'
+    gg : expands to 'good game'
     brb : expands to 'be right back'
 
 All this abbreviated text can be confusing and intimidating for someone new to a game. They're not going to instantly know what
