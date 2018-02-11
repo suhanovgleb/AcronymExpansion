@@ -8,14 +8,14 @@ namespace AcronymExpansion
 {
     static class StringWorker
     {
-        public static string ReplaceAcronyms(string sentence)
+        public static string ReplaceAcronyms(string sentence) //searching and replacing acronyms
         {
             Dictionary<string, string> acronyms = DictionaryOfAcronyms.Dictionary();
 
             foreach (KeyValuePair<string, string> acronym in acronyms)
             {
 
-                int index = sentence.IndexOf(acronym.Key);
+                int index = sentence.IndexOf(acronym.Key, StringComparison.OrdinalIgnoreCase);
 
                 while (index > -1) //will exit the loop when IndexOff() doesn't find the entry of the acronym in the string 
                 {
@@ -28,7 +28,7 @@ namespace AcronymExpansion
                                 sentence = ReplaceAcronym(sentence, index, acronym);
                             }
                         }
-                        catch (ArgumentOutOfRangeException)
+                        catch (ArgumentOutOfRangeException) //if the sentence contains only one acronym and nothing else
                         {
                             sentence = ReplaceAcronym(sentence, index, acronym);
                             break;
@@ -43,7 +43,7 @@ namespace AcronymExpansion
                         sentence = ReplaceAcronym(sentence, index, acronym);
                     }
                     
-                    index = sentence.IndexOf(acronym.Key, index + acronym.Key.Length);
+                    index = sentence.IndexOf(acronym.Key, index + acronym.Key.Length, StringComparison.OrdinalIgnoreCase);
                 }
 
             }
@@ -51,7 +51,7 @@ namespace AcronymExpansion
             return sentence;
         }
 
-        private static string ReplaceAcronym (string sentence, int startFromIndex, KeyValuePair<string, string> acronym)
+        private static string ReplaceAcronym (string sentence, int startFromIndex, KeyValuePair<string, string> acronym) //replaces one acronym with the full version
         {
             sentence = sentence.Remove(startFromIndex, acronym.Key.Length);
             sentence = sentence.Insert(startFromIndex, acronym.Value);

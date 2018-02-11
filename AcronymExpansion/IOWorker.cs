@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AcronymExpansion
 {
     static class IOWorker
     {
-        static public string ReadSentence()
+        static public string ReadSentence() //Reads sentence from console
         {
             string acronymString = null;
 
@@ -38,12 +33,12 @@ namespace AcronymExpansion
 
         }
 
-        public static void IsAgain()
+        public static void IsAgain() //Asks if you want to enter another sentence. Also contains the exit point from the application.
         {
             bool check = false;
             do
             {
-                Console.WriteLine("Do you want to write another sentence (y/n):");
+                Console.WriteLine("Do you want to enter another sentence (y/n):");
                 switch (Console.ReadKey().KeyChar)
                 {
                     case 'y':
