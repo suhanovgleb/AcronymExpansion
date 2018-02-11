@@ -9,7 +9,7 @@ namespace AcronymExpansion
 {
     static class IOWorker
     {
-        static public string Read()
+        static public string ReadSentence()
         {
             string acronymString = null;
 
@@ -36,6 +36,28 @@ namespace AcronymExpansion
             }
 
 
+        }
+
+        public static void IsAgain()
+        {
+            bool check = false;
+            do
+            {
+                Console.WriteLine("Do you want to write another sentence (y/n):");
+                switch (Console.ReadKey().KeyChar)
+                {
+                    case 'y':
+                        check = true;
+                        Console.WriteLine();
+                        break;
+                    case 'n':
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("\nThe entered char is not 'n' or 'y'. Please try again.");
+                        break;
+                }
+            } while (!check);
         }
     }
 }

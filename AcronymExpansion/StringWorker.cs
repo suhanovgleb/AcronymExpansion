@@ -14,11 +14,10 @@ namespace AcronymExpansion
 
             foreach (KeyValuePair<string, string> acronym in acronyms)
             {
-                var indexes = new List<int>();
 
-                int index = sentence.IndexOf(acronym.Key, 0);
+                int index = sentence.IndexOf(acronym.Key);
 
-                while (index > -1)
+                while (index > -1) //will exit the loop when IndexOff() doesn't find the entry of the acronym in the string 
                 {
                     if (index == 0)
                     {
@@ -26,37 +25,38 @@ namespace AcronymExpansion
                         {
                             if (!char.IsLetterOrDigit(sentence, acronym.Key.Length))
                             {
-                                indexes.Add(index);
+                                sentence = ReplaceAcronym(sentence, index, acronym);
                             }
                         }
                         catch (ArgumentOutOfRangeException)
                         {
-                            indexes.Add(index);
+                            sentence = ReplaceAcronym(sentence, index, acronym);
                             break;
                         }
                     }
-                    else if ((index + acronym.Key.Length == sentence.Length) && !char.IsLetterOrDigit(sentence, index - 1) )
+                    else if ( (index + acronym.Key.Length == sentence.Length) && !char.IsLetterOrDigit(sentence, index - 1) )
                     {
-                        indexes.Add(index);
+                        sentence = ReplaceAcronym(sentence, index, acronym);
                     }
                     else if (!char.IsLetterOrDigit(sentence, index - 1) && !char.IsLetterOrDigit(sentence, index + acronym.Key.Length))
                     {
-                        indexes.Add(index);
+                        sentence = ReplaceAcronym(sentence, index, acronym);
                     }
                     
                     index = sentence.IndexOf(acronym.Key, index + acronym.Key.Length);
                 }
-
-                foreach (int i in indexes)
-                {
-                    Console.WriteLine(i);
-                }
-
 
             }
 
             return sentence;
         }
 
+        private static string ReplaceAcronym (string sentence, int startFromIndex, KeyValuePair<string, string> acronym)
+        {
+            sentence = sentence.Remove(startFromIndex, acronym.Key.Length);
+            sentence = sentence.Insert(startFromIndex, acronym.Value);
+
+            return sentence;
+        }
     }
 }
